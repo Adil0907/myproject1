@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Welcome | Our Education Platform</title>
+        <style>
+          /* CSS Variables */
+          :root {
+            --color-bg: #ffffff;
+            --color-text-primary: #111827;
+            --color-text-secondary: #6b7280;
+            --color-button-bg: #111827;
+            --color-button-text: #ffffff;
+            --color-button-hover-bg: #374151;
+            --font-heading: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --radius: 0.75rem;
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --max-width: 1200px;
+            --spacing-large: 4rem;
+            --spacing-medium: 2.5rem;
+            --spacing-small: 1.25rem;
+            --transition-duration: 0.3s;
+          }
+      
+          /* Reset and base */
+          *, *::before, *::after {
+            box-sizing: border-box;
+          }
+          body {
+            margin: 0;
+            background-color: var(--color-bg);
+            color: var(--color-text-secondary);
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+      
+          /* Container */
+          .container {
+            max-width: var(--max-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: var(--spacing-small);
+            padding-right: var(--spacing-small);
+          }
+      
+          /* Header */
+          header {
+            position: sticky;
+            top: 0;
+            background-color: var(--color-bg);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            box-shadow: var(--shadow-light);
+          }
+          nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+          }
+          .logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--color-text-primary);
+            user-select: none;
+          }
+          .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            align-items: center;
+          }
+          .nav-links a {
+            position: relative;
+            padding-bottom: 0.2rem;
+            transition: color var(--transition-duration);
+          }
+          .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-button-bg);
+            transition: width var(--transition-duration);
+            border-radius: 1px;
+          }
+          .nav-links a:hover,
+          .nav-links a:focus-visible {
+            color: var(--color-button-bg);
+            outline: none;
+          }
+          .nav-links a:hover::after,
+          .nav-links a:focus-visible::after {
+            width: 100%;
+          }
+      
+          /* Language selector */
+          .language-selector {
+            position: relative;
+          }
+          #language-button {
+            background: transparent;
+            border: 1.5px solid var(--color-text-secondary);
+            color: var(--color-text-secondary);
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition:
+              background-color var(--transition-duration) ease,
+              color var(--transition-duration) ease,
+              border-color var(--transition-duration) ease;
+            user-select: none;
+          }
+          #language-button:hover,
+          #language-button:focus-visible {
+            background-color: var(--color-button-bg);
+            color: var(--color-button-text);
+            border-color: var(--color-button-bg);
+            outline: none;
+          }
+          #language-menu {
+            position: absolute;
+            top: 110%;
+            right: 0;
+            background-color: var(--color-bg);
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 150px;
+            display: none;
+            flex-direction: column;
+            z-index: 1500;
+          }
+          #language-menu[aria-expanded="true"] {
+            display: flex;
+          }
+          .language-option {
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            user-select: none;
+          }
+          .language-option:hover,
+          .language-option:focus-visible {
+            background-color: var(--color-button-bg);
+            color: var(--color-button-text);
+            outline: none;
+          }
+      
+          /* Main hero */
+          main {
+            padding-top: var(--spacing-large);
+            padding-bottom: var(--spacing-large);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: var(--color-text-primary);
+          }
+          main h1 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin: 0 0 1rem 0;
+            user-select: none;
+          }
+          main p {
+            max-width: 640px;
+            font-weight: 400;
+            font-size: 1.125rem;
+            margin: 0 0 var(--spacing-large) 0;
+            color: var(--color-text-secondary);
+            user-select: text;
+          }
+          .buttons {
+            display: flex;
+            gap: 1.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 440px;
+          }
+          .btn {
+            flex: 1 1 45%;
+            min-width: 160px;
+            padding: 1rem 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-light);
+            background-color: var(--color-button-bg);
+            color: var(--color-button-text);
+            transition:
+              background-color var(--transition-duration) ease,
+              transform var(--transition-duration) ease,
+              box-shadow var(--transition-duration) ease;
+            user-select: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+          }
+          .btn:hover,
+          .btn:focus-visible {
+            background-color: var(--color-button-hover-bg);
+            transform: scale(1.05);
+            outline: none;
+            box-shadow: 0 8px 20px rgba(17, 24, 39, 0.3);
+          }
+          .btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 10px rgba(17, 24, 39, 0.2);
+          }
+      
+          /* Responsive */
+          @media (max-width: 480px) {
+            .btn {
+              flex-basis: 100%;
+            }
+          }
+        </style>
+      </head>
+<body>
+  <header>
+    <div class="container">
+      <nav role="navigation" aria-label="Main navigation">
+        <div class="logo" tabindex="0" id="logo-text">EducatePlus</div>
+        <div class="nav-links" role="menubar">
+          <a href="#" role="menuitem" tabindex="0" id="nav-home">Home</a>
+          <a href="#" role="menuitem" tabindex="0" id="nav-about">About</a>
+          <a href="#" role="menuitem" tabindex="0" id="nav-contact">Contact</a>
+          <div class="language-selector" id="language-selector">
+            <button id="language-button" aria-haspopup="true" aria-expanded="false" aria-controls="language-menu" aria-label="Select language">
+              Language ▾
+            </button>
+            <div id="language-menu" role="menu" aria-expanded="false" tabindex="-1">
+              <div class="language-option" role="menuitem" tabindex="0" data-lang="en">English</div>
+              <div class="language-option" role="menuitem" tabindex="0" data-lang="es">Español</div>
+              <div class="language-option" role="menuitem" tabindex="0" data-lang="zh">中文 (Chinese)</div>
+              <div class="language-option" role="menuitem" tabindex="0" data-lang="hi">हिन्दी (Hindi)</div>
+              <div class="language-option" role="menuitem" tabindex="0" data-lang="ar">العربية (Arabic)</div>
+              <div class="language-option" role="menuitem" tabindex="0" data-lang="fr">Français</div>
+              <div class="language-option" role="menuitem" tabindex="0" data-lang="ru">Русский</div> <!-- changed "ру" to "ru" -->
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <h1 id="hero-title">Empowering Students and Parents</h1>
+    <p id="hero-description">At EducatePlus, we provide tailored resources for students to excel academically and for parents to actively support their children's education. Join our community to discover personalized tools and guidance.</p>
+    <div class="buttons" role="group" aria-label="Select user type">
+      <a href="students.html" class="btn" role="button" aria-describedby="descStudents" id="btn-students">I'm a Student</a>
+      <a href="parents.html" class="btn" role="button" aria-describedby="descParents" id="btn-parents">I'm a Parent</a>
+    </div>
+  </main>
+  <script>
+    (function() {
+      const languageButton = document.getElementById('language-button');
+      const languageMenu = document.getElementById('language-menu');
+      const languageSelector = document.getElementById('language-selector');
+      let menuOpen = false;
+
+      const translations = {
+        en: {
+          logo: 'EducatePlus',
+          navHome: 'Home',
+          navAbout: 'About',
+          navContact: 'Contact',
+          heroTitle: 'Empowering Students and Parents',
+          heroDescription: "At EducatePlus, we provide tailored resources for students to excel academically and for parents to actively support their children's education. Join our community to discover personalized tools and guidance.",
+          btnStudents: "I'm a Student",
+          btnParents: "I'm a Parent",
+          languageLabel: "Language ▾"
+        },
+        es: {
+          logo: 'EducatePlus',
+          navHome: 'Inicio',
+          navAbout: 'Acerca de',
+          navContact: 'Contacto',
+          heroTitle: 'Empoderando a Estudiantes y Padres',
+          heroDescription: "En EducatePlus, ofrecemos recursos personalizados para que los estudiantes sobresalgan académicamente y para que los padres apoyen activamente la educación de sus hijos. Únete a nuestra comunidad para descubrir herramientas y orientación personalizadas.",
+          btnStudents: "Soy Estudiante",
+          btnParents: "Soy Padre/Madre",
+          languageLabel: "Idioma ▾"
+        },
+        zh: {
+          logo: 'EducatePlus',
+          navHome: '首页',
+          navAbout: '关于',
+          navContact: '联系',
+          heroTitle: '赋能学生和家长',
+          heroDescription: "在 EducatePlus，我们为学生提供量身定制的资源，帮助他们在学业上取得成功，并帮助家长积极支持子女的教育。加入我们的社区，发现个性化的工具和指导。",
+          btnStudents: "我是学生",
+          btnParents: "我是家长",
+          languageLabel: "语言 ▾"
+        },
+        hi: {
+          logo: 'EducatePlus',
+          navHome: 'होम',
+          navAbout: 'हमारे बारे में',
+          navContact: 'संपर्क करें',
+          heroTitle: 'छात्रों और माता-पिता को सशक्त बनाना',
+          heroDescription: "EducatePlus में, हम छात्रों को अकादमिक सफलता के लिए अनुकूलित संसाधन प्रदान करते हैं और माता-पिता को अपने बच्चों की शिक्षा में सक्रिय समर्थन करने में मदद करते हैं। हमारे समुदाय में शामिल हों और व्यक्तिगत उपकरण और मार्गदर्शन खोजें।",
+          btnStudents: "मैं छात्र हूँ",
+          btnParents: "मैं माता-पिता हूँ",
+          languageLabel: "भाषा ▾"
+        },
+        ar: {
+          logo: 'EducatePlus',
+          navHome: 'الرئيسية',
+          navAbout: 'معلومات عنا',
+          navContact: 'اتصل',
+          heroTitle: 'تمكين الطلاب وأولياء الأمور',
+          heroDescription: "في EducatePlus، نقدم موارد مخصصة للطلاب للتفوق أكاديميًا ولأولياء الأمور لدعم تعليم أبنائهم بنشاط. انضم إلى مجتمعنا لاكتشاف أدوات وإرشادات مخصصة.",
+          btnStudents: "أنا طالب",
+          btnParents: "أنا ولي أمر",
+          languageLabel: "اللغة ▾"
+        },
+        fr: {
+          logo: 'EducatePlus',
+          navHome: 'Accueil',
+          navAbout: 'À propos',
+          navContact: 'Contact',
+          heroTitle: 'Autonomiser les étudiants et les parents',
+          heroDescription: "Chez EducatePlus, nous fournissons des ressources adaptées pour permettre aux étudiants d’exceller académiquement et aux parents de soutenir activement l’éducation de leurs enfants. Rejoignez notre communauté pour découvrir des outils et conseils personnalisés.",
+          btnStudents: "Je suis étudiant",
+          btnParents: "Je suis parent",
+          languageLabel: "Langue ▾"
+        },
+        ru: {
+          logo: 'EducatePlus',
+          navHome: 'Главная',
+          navAbout: 'О нас',
+          navContact: 'Контакты',
+          heroTitle: 'Поддержка учащихся и родителей',
+          heroDescription: "В EducatePlus мы предоставляем индивидуальные ресурсы, чтобы помочь учащимся достичь академического успеха, а родителям — активно поддерживать образование своих детей. Присоединяйтесь к нашему сообществу, чтобы открыть для себя персонализированные инструменты и рекомендации.",
+          btnStudents: "Я учащийся",
+          btnParents: "Я родитель",
+          languageLabel: "Язык ▾"
+        }
+      };
+
+      const elements = {
+        logoText: document.getElementById('logo-text'),
+        navHome: document.getElementById('nav-home'),
+        navAbout: document.getElementById('nav-about'),
+        navContact: document.getElementById('nav-contact'),
+        heroTitle: document.getElementById('hero-title'),
+        heroDescription: document.getElementById('hero-description'),
+        btnStudents: document.getElementById('btn-students'),
+        btnParents: document.getElementById('btn-parents'),
+        languageButton: languageButton
+      };
+
+      function updateLanguage(lang) {
+        const t = translations[lang] || translations.en;
+        elements.logoText.textContent = t.logo;
+        elements.navHome.textContent = t.navHome;
+        elements.navAbout.textContent = t.navAbout;
+        elements.navContact.textContent = t.navContact;
+        elements.heroTitle.textContent = t.heroTitle;
+        elements.heroDescription.textContent = t.heroDescription;
+        elements.btnStudents.textContent = t.btnStudents;
+        elements.btnParents.textContent = t.btnParents;
+        languageButton.textContent = t.languageLabel;
+        languageButton.setAttribute('aria-label', t.languageLabel);
+        localStorage.setItem('siteLanguage', lang);
+      }
+
+      function toggleMenu() {
+        menuOpen = !menuOpen;
+        languageMenu.style.display = menuOpen ? 'flex' : 'none';
+        languageButton.setAttribute('aria-expanded', menuOpen.toString());
+        languageMenu.setAttribute('aria-expanded', menuOpen.toString());
+        if (menuOpen) {
+          languageMenu.focus();
+        }
+      }
+
+      function closeMenu() {
+        menuOpen = false;
+        languageMenu.style.display = 'none';
+        languageButton.setAttribute('aria-expanded', 'false');
+        languageMenu.setAttribute('aria-expanded', 'false');
+      }
+
+      languageButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      languageButton.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenu();
+        }
+      });
+
+      languageMenu.querySelectorAll('.language-option').forEach(option => {
+        option.addEventListener('click', function() {
+          updateLanguage(this.dataset.lang);
+          closeMenu();
+          languageButton.focus();
+        });
+        option.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            updateLanguage(this.dataset.lang);
+            closeMenu();
+            languageButton.focus();
+          }
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const next = this.nextElementSibling || languageMenu.firstElementChild;
+            next.focus();
+          }
+          if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prev = this.previousElementSibling || languageMenu.lastElementChild;
+            prev.focus();
+          }
+          if (e.key === 'Escape') {
+            closeMenu();
+            languageButton.focus();
+          }
+        });
+      });
+
+      document.body.addEventListener('click', function() {
+        if (menuOpen) {
+          closeMenu();
+        }
+      });
+
+      // Initialize language from localStorage or browser default
+      const savedLang = localStorage.getItem('siteLanguage');
+      const browserLang = navigator.language ? navigator.language.slice(0, 2) : 'en';
+      const initialLang = savedLang || (translations[browserLang] ? browserLang : 'en');
+      updateLanguage(initialLang);
+
+      // Initially hide menu
+      languageMenu.style.display = 'none';
+    })();
+  </script>
+</body>
+</html>
